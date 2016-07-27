@@ -22,7 +22,7 @@ You'll find a few subdirectories under the main template repository. These are u
  * `boiler/approval.tex` - Change this to reflect the name of the office, unit, school, or college that approved your paper.
  * `boiler/author.tex` - Change this to your name.
  * `boiler/committee.tex` - Change this to reflect the names of the members of your graduate committee.
- * `boiler/dedication_page.tex` - Write the contents or your dedication(s) here.
+ * `boiler/dedication_page.tex` - Write the contents of your dedication(s) here.
  * `boiler/degree.tex` - Change this to reflect the name of the degree to which you are working.
  * `boiler/keywords.tex` - Change this to reflect any keywords (or phrases) that your paper should be indexed by for searching.
  * `boiler/title.tex` - Change this to what you'd like the title of your paper to be.
