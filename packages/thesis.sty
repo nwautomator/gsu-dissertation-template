@@ -1,0 +1,265 @@
+\def\titlepage{\@restonecolfalse\if@twocolumn\@restonecoltrue\onecolumn
+     \else \newpage \fi \thispagestyle{thesistitle}}
+\def\tableofcontents{\@restonecolfalse\if@twocolumn\@restonecoltrue\onecolumn
+                     \fi\chapter*{TABLE OF CONTENTS\@mkboth{TABLE OF CONTENTS}{TABLE OF CONTENTS}}
+                     \@starttoc{toc}\if@restonecol\twocolumn\fi}
+\def\listoffigures{\@restonecolfalse\if@twocolumn\@restonecoltrue\onecolumn
+  \fi\fchapter{LIST OF FIGURES\@mkboth
+   {LIST OF FIGURES}{LIST OF FIGURES}}\@starttoc{lof}\if@restonecol
+    \twocolumn\fi}
+\def\listoftables{\@restonecolfalse\if@twocolumn\@restonecoltrue\onecolumn
+  \fi\fchapter{LIST OF TABLES\@mkboth
+   {LIST OF TABLES}{LIST OF TABLES}}\@starttoc{lot}\if@restonecol
+    \twocolumn\fi}
+\def\listofplates{\@restonecolfalse\if@twocolumn\@restonecoltrue\onecolumn
+  \fi\fchapter{List of Plates\@mkboth
+   {LIST OF PLATES}{LIST OF PLATES}}\@starttoc{lop}\if@restonecol
+    \twocolumn\fi}
+\def\l@plate{\@platetocline{1}{1.5em}{2.3em}}
+\def\@platetocline#1#2#3#4#5{\ifnum #1>\c@tocdepth \else
+  \vskip \z@ plus .2pt
+  {\leftskip #2\relax \rightskip \@tocrmarg \parfillskip -\rightskip
+    \parindent #2\relax\@afterindenttrue
+   \interlinepenalty\@M
+   \leavevmode 
+   \@tempdima #3\relax \advance\leftskip \@tempdima \hbox{}\hskip -\leftskip
+    #4\nobreak\hfill \nobreak \hfill\par}\fi}
+\newcounter{plate}
+\def\theplate{\@arabic\c@plate}
+\long\def\plate#1{\refstepcounter{plate}\par
+\addcontentsline{lop}{plate}{\protect\numberline{\theplate}{\ignorespaces #1}}
+\addtocontents{lop}{\protect\addvspace{10pt}}}
+\newdimen\twicehsize     % temporary dimension variable
+\long\def\@makecaption#1#2{
+   \vskip 10pt 
+   \setbox\@tempboxa\hbox{#1. #2}
+   \twicehsize=\hsize \multiply\twicehsize by 2
+   \ifdim \wd\@tempboxa >\twicehsize   % IF longer than two lines:
+       #1. #2\par                 %   THEN set as ordinary paragraph.
+     \else                        %   ELSE  center.
+       \centering
+       #1. #2\par 
+   \fi}
+\if@twoside                 % Values for two-sided printing:
+   \oddsidemargin 0.0in      %   Left margin on odd-numbered pages.
+   \evensidemargin 1.0in     %   Left margin on even-numbered pages.
+   \marginparwidth 85pt    %   Width of marginal notes.
+\else                       % Values for one-sided printing:
+   \oddsidemargin 0.0in     %   Note that \oddsidemargin = \evensidemargin
+   \evensidemargin 1.0in
+   \marginparwidth 68pt 
+\fi
+\topmargin -0.4in         %    Nominal distance from top of page to top of
+\headheight 12pt         %    Height of box containing running head.
+\headsep 48pt            %    Space between running head and text.
+\footskip 15pt           %    Distance from baseline of box containing foot 
+\textheight = 0pt
+\advance\textheight by \topskip
+\textwidth 6.25in         % Width of text line.
+\hoffset 0.5in
+\textfloatsep 30pt plus 2pt minus 4pt    % Space between main text and floats
+\intextsep 22pt plus 4pt minus 4pt       % Space between in-text figures and 
+\parindent 24pt                   % Width of paragraph indentation.
+\def\@makechapterhead#1{             % Heading for \chapter command
+ %\vspace*{50pt} 
+    \vskip 1.0em plus 1pt                      % Space at top of text page.
+  { \parindent 0pt \raggedright 
+    \ifnum \c@secnumdepth >\m@ne     % IF secnumdepth > -1 THEN
+      \normalsize\bf\centering \@chapapp{} \thechapter % Print 'Chapter' and number.
+      \par 
+      \vskip 20pt \fi
+      \normalsize \bf                % Space between number and title.
+    %\Large \bf                  % Title.
+    \uppercase{#1}\par 
+    \nobreak                         % TeX penalty to prevent page break.
+    \vskip 40pt                      % Space between title and text.
+  } }
+\def\@makeschapterhead#1{            % Heading for \chapter* command
+ %\vspace*{50pt}  
+   \vskip 1.0em plus 1pt                     % Space at top of page.
+  { \parindent 0pt \raggedright
+    \normalsize  \bf \centering 
+    %\Large \bf \centering       % Title.
+    \uppercase{#1}\par 
+    \nobreak                         % TeX penalty to prevent page break.
+    \vskip 40pt                      % Space between title and text.
+  } }
+
+\def\chapter{\clearpage      % Starts new page.
+   \global\@topnum\z@        % Prevents figures from going at top of page.
+   \@afterindenttrue         % Suppresses indent in first paragraph.  Change
+   \secdef\@chapter\@schapter}   % to \@afterindenttrue to have indent.
+\def\section{\ifnum \c@section =\z@ % if first section, add toc space
+    \addtocontents{toc}{\protect\addvspace{10pt}}\fi
+    \@startsection {section}{1}{\z@}{3.5ex plus 1ex minus 
+    .2ex}{2.3ex plus .2ex}{\normalsize\bf}}
+\def\subsection{\@startsection{subsection}{2}{\parindent}{3.25ex plus 1ex minus 
+    .2ex}{1.5ex plus .2ex}{\normalsize\bf}}
+\def\subsubsection{\@startsection{subsubsection}{3}{\parindent}{3.25ex plus 
+   1ex minus .2ex}{-1em}{\normalsize\bf}}
+\def\paragraph{\@startsection
+     {paragraph}{4}{4em}{3.25ex plus 1ex minus .2ex}{-1em}{\normalsize\bf}}
+\def\subparagraph{\@startsection
+     {subparagraph}{4}{6em}{3.25ex plus 1ex minus .2ex}{-1em}{\normalsize\bf}}
+\input epsf.sty			% read in epsf macros for figures
+\input packages/doublespace.sty		% thesis is double-spaced
+\setstretch{1.6}		% well, not quite
+\def\ps@thesistitle{\let\@mkboth\@gobbletwo
+\def\@oddhead{\hbox{} \rm\rightmark \hfil}% doesn't work on 1st page of doc!(?)
+\def\@oddfoot{}%
+\def\@evenhead{\hfil \rm\leftmark\hbox {}}%
+\def\@evenfoot{}%
+\def\chaptermark##1{}\def\sectionmark##1{}%
+\def\subsectionmark##1{}}
+
+\def\ps@thesisfront{\let\@mkboth\@gobbletwo
+\def\@oddhead{\rm\rightmark \hfil}%
+%\def\@oddfoot{\hfil \rm\thepage \hfil}%
+\def\@evenhead{\hfil \rm\leftmark\hbox {}}%
+%\def\@evenfoot{\hfil \rm\thepage \hfil}%
+\def\chaptermark##1{}\def\sectionmark##1{}%
+\def\subsectionmark##1{}}
+
+\def\ps@thesistext{\let\@mkboth\@gobbletwo
+\def\@oddhead{\rm\rightmark \hfil \rm\thepage}%
+\def\@oddfoot{}%
+%\def\@evenhead{\rm \thepage\hfil\rm\leftmark\hbox {}}%
+\def\@evenhead{\rm\rightmark \hfil \rm\thepage}%
+\def\@evenfoot{}%
+\def\chaptermark##1{}\def\sectionmark##1{}%
+\def\subsectionmark##1{}}
+
+\ps@thesisfront                 % select page style for thesis frontmatter
+\newdimen\dtmp     % temporary dimension variable
+\def\reference#1{ \begin{singlespace}
+                  \baselineskip=.8\normalbaselineskip \dtmp=\hsize
+		\advance\dtmp by-\parindent \parshape 2 0in \hsize \parindent
+		\dtmp \noindent #1 \endgraf \baselineskip=\normalbaselineskip
+		\vskip4pt
+                \end{singlespace}
+}
+\font\Alisttt=cmtt9 at 9 truept
+\def\uncatcodespecials{\def\do##1{\catcode`##1=12 }\dospecials}
+\def\listing#1{\par\bigskip\begingroup\parskip=0pt\setupverbatim\input#1%
+\endgroup\bigskip}
+\def\setupverbatim{
+  \Alisttt\baselineskip= 8.5truept\lineskip=1truept
+  \lineskiplimit=1truept\topskip=0pt
+  \def\par{\leavevmode\egroup\box0\endgraf} 
+  \obeylines \uncatcodespecials \obeyspaces
+  \catcode`\`=\active \catcode`\^^I=\active
+  \everypar{
+  \startbox}}
+\newdimen\w \setbox0=\hbox{\Alisttt\space} \w=8\wd0
+\def\startbox{\setbox0=\hbox\bgroup}
+{\catcode`\^^I=\active 
+  \gdef^^I{\leavevmode\egroup
+    \dimen0=\wd0
+    \divide\dimen0 by\w
+    \multiply\dimen0 by\w
+    \advance\dimen0 by\w
+    \wd0=\dimen0 \box0 \startbox}}
+{\obeyspaces\global\let =\ }
+{\catcode`\`=\active \gdef`{\relax\lq}}
+\long\def\@caption#1[#2]#3{\par\addcontentsline{\csname
+  ext@#1\endcsname}{#1}{\protect\numberline{\csname 
+  the#1\endcsname}{\ignorespaces #2}}\addtocontents{\csname
+  ext@#1\endcsname}{\protect\addvspace{10pt}}\begingroup
+    \@parboxrestore
+    \normalsize
+    \@makecaption{\csname fnum@#1\endcsname}{\ignorespaces #3}\par
+  \endgroup}
+\def\@chapter[#1]#2{\ifnum \c@secnumdepth >\m@ne
+        \refstepcounter{chapter}
+        \typeout{\@chapapp\space\thechapter.}
+        \addcontentsline{toc}{chapter}{\protect
+        \numberline{\@chapapp{} \thechapter}\uppercase{#1}}\else
+      \addcontentsline{toc}{chapter}{\uppercase{#1}}\fi
+   \chaptermark{#1}
+   \if@twocolumn                                 % Tests for two-column mode.  
+           \@topnewpage[\@makechapterhead{#2}]  
+     \else \@makechapterhead{#2}
+           \@afterheading                  % Routine called after chapter and
+     \fi}                                  % section heading.
+
+\newcounter{fchapter}
+\def\l@chapter#1#2{\addpenalty{-\@highpenalty}  
+   \vskip 1.0em plus 1pt  % space above chapter line
+ % \@tempdima 1.5em       % width of box holding chapter number
+   \@tempdima 7em         % width of box holding \@chappapp and chapter number
+   \begingroup
+     \parindent \z@ \rightskip \@pnumwidth 
+     \parfillskip -\@pnumwidth   
+     \bf                  % Boldface.
+     \leavevmode          % TeX command to enter horizontal mode.       
+      \advance\leftskip\@tempdima  %% added 5 Feb 88 to conform to 
+      \hskip -\leftskip            %% 25 Jan 88 change to \numberline
+     #1\nobreak\leaders\hbox{$\m@th \mkern \@dotsep mu.\mkern \@dotsep 
+       mu$}\hfill \nobreak \hbox to\@pnumwidth{\hss #2}\par
+     \penalty\@highpenalty %% added 24 May 89 as suggested by J. Leichter
+   \endgroup}
+\def\@makefchapterhead#1{            % Heading for \fchapter command
+ %\vspace*{50pt}                     % Space at top of text page.
+  { \parindent 0pt \raggedright 
+    \normalsize \bf \centering       % Title.
+    \uppercase{#1}\par 
+    \nobreak                         % TeX penalty to prevent page break.
+    \vskip 40pt                      % Space between title and text.
+  } }
+\def\@makesfchapterhead#1{           % Heading for \fchapter command
+ %\vspace*{50pt}                     % Space at top of text page.
+  { \parindent 0pt \raggedright 
+    \normalsize \bf \centering       % Title.
+    \uppercase{#1}\par 
+    \nobreak                         % TeX penalty to prevent page break.
+    \vskip 40pt                      % Space between title and text.
+  } }
+\def\fchapter{\clearpage      % Starts new page.
+   \global\@topnum\z@        % Prevents figures from going at top of page.
+   \@afterindenttrue        % Suppresses indent in first paragraph.  Change
+   \secdef\@fchapter\@sfchapter}   % to \@afterindenttrue to have indent.
+
+\def\@fchapter[#1]#2{
+      \addcontentsline{toc}{chapter}{\uppercase{#1}}
+   \fchaptermark{#1}
+   \if@twocolumn                                 % Tests for two-column mode.  
+           \@topnewpage[\@makefchapterhead{#2}]  
+     \else \@makefchapterhead{#2}
+           \@afterheading                  % Routine called after chapter and
+     \fi}                                  % section heading.
+
+\def\@sfchapter#1{\if@twocolumn \@topnewpage[\@makesfchapterhead{#1}]
+        \else \@makesfchapterhead{#1} 
+              \@afterheading\fi}
+\def\fchaptermark#1{}
+\def\thebibliography#1{\fchapter{References\@mkboth
+  {REFERENCES}{REFERENCES}}\list
+  {[\arabic{enumi}]}{\settowidth\labelwidth{[#1]}\leftmargin\labelwidth
+    \advance\leftmargin\labelsep
+    \usecounter{enumi}}
+    \def\newblock{\hskip .11em plus .33em minus .07em}
+    \sloppy\clubpenalty4000\widowpenalty4000
+    \sfcode`\.=1000\relax}
+\def\authordatereferences{%
+  \def\@cite##1##2{(##1\if@tempswa , ##2\fi)}
+  \def\@biblabel##1{}
+
+  \newlength{\bibhang}
+  \setlength{\bibhang}{2em}
+
+  \def\thebibliography##1{\fchapter{References\@mkboth
+    {References}{References}}\list
+    {\relax}{\setlength{\labelsep}{0em}
+	  \setlength{\itemindent}{-\bibhang}
+	  \setlength{\leftmargin}{\bibhang}}
+      \def\newblock{\hskip .11em plus .33em minus .07em}
+      \sloppy\clubpenalty4000\widowpenalty4000
+      \sfcode`\.=1000\relax}
+
+  \def\@citex[##1]##2{\if@filesw\immediate\write\@auxout{\string\citation{##2}}\fi
+    \def\@citea{}\@cite{\@for\@citeb:=##2\do
+      {\@citea\def\@citea{; }\@ifundefined
+         {b@\@citeb}{{\bf ?}\@warning
+         {Citation `\@citeb' on page \thepage \space undefined}}%
+  {\csname b@\@citeb\endcsname}}}{##1}}
+}

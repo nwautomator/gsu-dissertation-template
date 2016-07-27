@@ -1,0 +1,158 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%		GSU DISSERTATION TEMPLATE		  %
+%		JULY 2016						  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%% DO NOT CHANGE     %%%%%%%%%%
+%%%%%%%%%%%%%% BEGIN             %%%%%%%%%%
+\makeatletter
+\let\my@xfloat\@xfloat
+\makeatother
+
+\documentclass[12pt,onside,letterpaper]{report}
+\title{\input{boiler/author} PhD proposal}
+
+\usepackage{textcase}
+\usepackage{etex}
+\usepackage{mathtools}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage[subfigure, titles]{packages/tocloft}
+\usepackage{multirow}
+\usepackage{packages/doublespace}
+\usepackage{packages/citesort}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\usepackage{packages/thesis}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{listings}
+\usepackage{url}
+\usepackage{caption}
+\usepackage{epsfig}
+\usepackage{epstopdf}
+\usepackage{geometry}
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usepackage{amsmath, amsfonts, amssymb, amsthm}
+\usepackage{enumerate}
+
+\makeatletter
+\def\@xfloat#1[#2]{
+        \my@xfloat#1[#2]%
+        \def\baselinestretch{1}%
+        \@normalsize \normalsize
+}
+\makeatother
+
+
+\newenvironment{list2}{
+  \begin{list}{$\bullet$}{%
+      \setlength{\itemsep}{0in}
+      \setlength{\parsep}{0in} \setlength{\parskip}{0in}
+      \setlength{\topsep}{0in} \setlength{\partopsep}{0in}
+      \setlength{\leftmargin}{0.2in}}}{\end{list}}
+
+\setlength\paperheight{11in}
+\setlength\paperwidth{8.5 in}
+\geometry{verbose,letterpaper,left=0.5 in,right=1in,top=1 in,bottom=1in}
+\setlength\textheight{9in}
+\setlength\textwidth{6.5in}
+\setlength{\headheight}{0.4 in}
+\setlength{\headsep}{0.4 in}
+\newcommand{\eat}[1]{}
+\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
+\lstset{breaklines, basicstyle=\footnotesize \sffamily \itshape, stringstyle=\sffamily, frame=single}
+\usepackage{titlesec}
+\titleformat{\subsection} {\normalsize}{\thesubsection}{1em}{}
+\titlespacing{\subsection}{25pt}{*2.5}{*1.5}
+\captionsetup[figure]{labelformat=parens, labelsep=space}
+\captionsetup[table]{labelformat=parens, labelsep=space} 
+\renewcommand{\chaptername}{PART} 
+%%%%%%%%%%%%%% END               %%%%%%%%%%
+%%%%%%%%%%%%%% DO NOT CHANGE     %%%%%%%%%%
+
+\newcommand{\A}{\mathtt{a}}
+\newcommand{\C}{\mathtt{c}}
+\newcommand{\G}{\mathtt{g}}
+\newcommand{\T}{\mathtt{t}}
+\newcommand{\D}{\mathtt{d}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\like}{\mathcal{L}}
+\newcommand{\loglike}{\ell}
+
+\def\calX{\mathcal{X}}
+\def\calG{\mathcal{G}}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+\usetikzlibrary{shapes, shadows, arrows}
+\usetikzlibrary{calc}
+\usepgfplotslibrary{groupplots}
+
+% Our Problem Definitions
+\input{boiler/problemdefs}
+
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+\begin{document}
+\tolerance=1000
+\newpage
+\include{boiler/abstract}
+\newpage
+\pagenumbering{roman}
+\include{boiler/title_page}
+\newpage
+\include{boiler/copyright_page}
+\newpage
+\include{boiler/approval_page}
+\newpage
+\include{boiler/dedication_page}
+\newpage
+\include{boiler/acknowledgement_page}
+\newpage
+\setlength{\cftfignumwidth}{5.5em}
+\setlength{\cfttabnumwidth}{5.5em}
+\addtocontents{toc}{\cftpagenumbersoff{chapter}}
+\renewcommand {\contentsname}{TABLE OF CONTENTS}
+\makeatletter
+\renewcommand{\@dotsep}{9.0}
+\renewcommand{\@pnumwidth}{3.00em}
+\makeatother
+\renewcommand {\listfigurename}{LIST OF FIGURES}
+\renewcommand {\listtablename}{LIST OF TABLES}
+\tableofcontents
+\newpage
+\renewcommand{\cfttabpresnum}{Table }
+\renewcommand{\cftfigpresnum}{Figure }
+\listoftables
+\newpage
+\listoffigures
+\newpage
+\include{boiler/abbreviations}
+\newpage
+\pagenumbering{arabic}
+\pagestyle{myheadings}
+\markright{}
+\include{chapters/introduction}
+\newpage
+%% Add as many parts or chapters as you need - below is just an example
+\include{chapters/part1}
+\newpage
+\include{chapters/part2}
+\newpage
+\include{chapters/part3}
+\newpage
+\include{chapters/conclusions}
+\newpage
+
+\bibliography{diss}
+\bibliographystyle{IEEEtran}
+\appendix
+\end{document}

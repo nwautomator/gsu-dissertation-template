@@ -1,0 +1,40 @@
+% Styles for pgfplots
+\pgfplotsset{
+    every axis legend/.append style={ at={(1.02,1)}, anchor=north west}
+}
+
+% Set shape styles
+\tikzset{
+    sshadow/.style={opacity=.25, shadow xshift=0.05, shadow yshift=-0.06}
+}
+
+% style definitions for tikz
+\tikzstyle{input} = [tape, draw, tape bend top=none, fill=gray!20, draw=gray!50, thick, 
+    text width=7em, text badly centered, node distance=3cm, drop shadow={sshadow, color=gray!50!black},
+    bottom color=gray!70, top color=gray!25]
+\tikzstyle{output} = [tape, draw, tape bend top=none, fill=gray!20, draw=gray!50, thick,
+    text width=7em, text badly centered, node distance=3cm, drop shadow={sshadow, color=gray!50!black},
+    bottom color=gray!70, top color=gray!25]
+\tikzstyle{findmethod} = [rectangle, draw, fill=red!20, draw=red!50, thick,
+    text width=10em, text badly centered, node distance=3cm, drop shadow={sshadow, color=red!50!black},
+    bottom color=red!70!black!50, top color=red!25]
+\tikzstyle{fixmethod} = [rectangle, draw, fill=red!20, draw=red!50, thick,
+    text width=7em, text badly centered, node distance=3cm, drop shadow={sshadow, color=red!50!black},
+    bottom color=red!70!black!50, top color=red!25]
+\tikzstyle{vertex} = [circle, thick, draw=blue!50, fill=blue!20, minimum size=6mm,
+    drop shadow={sshadow, color=blue!20!black!50}]
+\tikzstyle{fork} = [diamond, thick, draw=green!70, fill=green!50, minimum size=6mm,
+    drop shadow={sshadow, color=green!20!black!50}]
+\tikzstyle{line} = [draw, -latex', thick]
+
+\chapter{Introduction}
+\label{sec:intro_description}
+Add some text here... 
+\section{State of Problem}
+Add some text here... 
+\section{Purpose}
+Add some text here... 
+\section{Significance}
+Add some text here... 
+\section{Outline}
+Add some text here... 
