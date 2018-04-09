@@ -5,3 +5,9 @@
 main.pdf
 *.toc
 main*.gz
+*.swp
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.out
